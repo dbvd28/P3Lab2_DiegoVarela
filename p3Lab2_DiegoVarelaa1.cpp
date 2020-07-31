@@ -4,7 +4,7 @@
 #include <math.h>
 using namespace std;
 double leibniz(int, int);
-double raphson(double, int,int,int,int);
+double raphson(double, int, int, int, int);
 int main()
 {
     char resp = 's';
@@ -27,18 +27,17 @@ int main()
                 cout << "Ingrese un numero mayor a 0: " << endl;
                 cin >> num1;
             }
-            cout << endl;
+            cout << "Ingrese el segundo numero: ";
             cin >> num2;
-            cout << endl;
+            cout << "Ingrese el tercer numero: ";
             cin >> num3;
-            cout << endl;
             double vertice;
             vertice = -num2 / (2 * (num1));
             double ejecucion_1, ejecucion_2;
             ejecucion_1 = vertice + 200;
             ejecucion_2 = vertice - 200;
-            cout << "Ejecucion 1 "<<raphson(ejecucion_1,num1,num2,num3,0)<<endl;
-            cout << "Ejecucion 2 "<<raphson(ejecucion_2,num1,num2,num3,0)<<endl;
+            cout << "Ejecucion 1 " << raphson(ejecucion_1, num1, num2, num3, 0) << endl;
+            cout << "Ejecucion 2 " << raphson(ejecucion_2, num1, num2, num3, 0) << endl;
             break;
         case 2:
         {
@@ -54,6 +53,7 @@ int main()
                     matriz[i][j] = num_random;
                 }
             }
+            cout << "Esta es la matriz normal: " << endl;
             for (int i = 0; i < tamano; i++)
             {
                 for (int j = 0; j < tamano; j++)
@@ -107,6 +107,11 @@ int main()
             int max_sum;
             cout << "Ingrese el numero maximo de la sumatoria: " << endl;
             cin >> max_sum;
+            if (max_sum <= 0)
+            {
+                cout << "Porfavor ingrese un numero mayor a 0: ";
+                cin >> max_sum;
+            }
             cout << "La respuesta es: " << leibniz(max_sum, 0) * 4 << endl;
             break;
         }
@@ -125,13 +130,16 @@ double leibniz(int max, int cont)
     return 0;
 }
 
-double raphson(double numero, int num1,int num2,int num3,int cont )
+double raphson(double numero, int num1, int num2, int num3, int cont)
 {
-    if(cont==100){
-return numero;
-    }else{
-        double x_subn=raphson(numero,num1,num2,num3,cont+1);
-return x_subn-((num1*pow(x_subn,2))+(num2*x_subn)+num3)/((2*num1*x_subn)+num2);
+    if (cont == 100)
+    {
+        return numero;
+    }
+    else
+    {
+        double x_subn = raphson(numero, num1, num2, num3, cont + 1);
+        return x_subn - ((num1 * pow(x_subn, 2)) + (num2 * x_subn) + num3) / ((2 * num1 * x_subn) + num2);
     }
     return 0;
 }
